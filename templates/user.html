@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Картка гостя — {{ username }}{% endblock %}
+
+{% block content %}
+    <h2 style="text-align: center; margin-bottom: 25px;">Персональна картка лояльності 💳</h2>
+    <div class="card" style="max-width: 500px; margin: 0 auto 30px auto; background: linear-gradient(135deg, #4e342e, #2c1d17); color: white; border: none; position: relative; overflow: hidden;">
+        <div style="position: absolute; right: -20px; bottom: -20px; opacity: 0.1; font-size: 10rem;">☕</div>
+        <span class="badge" style="background: #d7ccc8; color: #3e2723;">{{ status }}</span>
+        <h3 style="color: #fff; font-size: 1.6rem; margin: 15px 0 5px 0;">{{ username }}</h3>
+        <p style="color: #d7ccc8; margin-bottom: 20px;">Картка № {{ range(1000, 9999) | random }}</p>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+            <div>
+                <small style="color: #a1887f; display: block;">Накопичені бонуси:</small>
+                <span style="font-size: 1.5rem; font-weight: bold; color: #f5abe2;">150 ₴</span>
+            </div>
+            <span style="font-size: 0.85rem; color: #d7ccc8;">N & V Club</span>
+        </div>
+    </div>
+    <div class="card" style="max-width: 500px; margin: 0 auto;">
+        <h3>Змінити дані гостя:</h3>
+        <form action="" method="GET" onsubmit="event.preventDefault(); window.location.href='/user/' + encodeURIComponent(document.getElementById('userNameInput').value) + '?status=' + encodeURIComponent(document.getElementById('userStatusInput').value);">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Ваше ім'я:</label>
+                <input type="text" id="userNameInput" value="{{ username }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Ваш статус:</label>
+                <select id="userStatusInput" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    <option value="Новий гість" {% if status == 'Новий гість' %}selected{% endif %}>Новий гість</option>
+                    <option value="Постійний гість" {% if status == 'Постійний гість' %}selected{% endif %}>Постійний гість</option>
+                    <option value="VIP Клієнт" {% if status == 'VIP Клієнт' %}selected{% endif %}>VIP Клієнт</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Оновити картку</button>
+        </form>
+    </div>
+{% endblock %}

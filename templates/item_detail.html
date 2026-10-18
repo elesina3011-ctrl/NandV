@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title if item else 'Товар не знайдено' }}{% endblock %}
+
+{% block content %}
+    {% if item %}
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}"
+                 alt="{{ item.title }}"
+                 class="item-img"
+                 style="height: 280px;"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/600x280/efebe9/5d4037?text={{ item.title }}';">
+
+            <span class="badge" style="margin-top: 10px;">{{ item.category_name }}</span>
+            <h2 style="color: #3e2723; margin: 10px 0;">{{ item.title }}</h2>
+            <p style="font-size: 1.05rem; color: #5d4037; line-height: 1.6;">{{ item.description }}</p>
+
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #efebe9; display: flex; justify-content: space-between; align-items: center;">
+                <span class="price" style="font-size: 1.6rem;">{{ item.price }} ₴</span>
+
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <a href="/edit/{{ item.id }}" class="btn" style="background: #8d6e63; font-size: 0.85rem; padding: 8px 12px;">Редагувати ✏️</a>
+
+                    <form action="/delete/{{ item.id }}" method="POST" style="margin: 0;" onsubmit="return confirm('Ви впевнені, що хочете видалити цей товар?');">
+                        <button type="submit" class="btn" style="background: #c62828; font-size: 0.85rem; padding: 8px 12px;">Видалити 🗑️</button>
+                    </form>
+
+                    <a href="/items" class="btn" style="font-size: 0.85rem; padding: 8px 12px;">Назад</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert">
+            <h3>Помилка 404</h3>
+            <p>Позицію з ID {{ item_id }} не знайдено в нашому меню.</p>
+        </div>
+        <p><a href="/items" class="btn">← Повернутися до меню</a></p>
+    {% endif %}
+{% endblock %}

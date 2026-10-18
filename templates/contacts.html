@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакти — N & V{% endblock %}
+
+{% block content %}
+    <h2 style="text-align: center; margin-bottom: 30px;">Завітайте до нас на каву! 📍</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+        <div>
+            <div class="card">
+                <h3>Адреса та зв'язок</h3>
+                <p>📍 <strong>Адреса:</strong> м. Миколаїв, вул. Набережна, 12</p>
+                <p>📞 <strong>Телефон:</strong> +380 (77) 777-77-77</p>
+                <p>✉️ <strong>Email:</strong> hello@NandV.com</p>
+                <p>💬 <strong>Telegram:</strong> @N_V_bot</p>
+            </div>
+
+            <div class="card" style="background: #efebe9;">
+                <h3>Графік роботи ⏰</h3>
+                <p><strong>Понеділок — П'ятниця:</strong> 07:30 – 21:00</p>
+                <p><strong>Субота — Неділя:</strong> 08:30 – 22:00</p>
+                <small style="color: #6d4c41;">*Свіжа випічка подається о 08:00 та 14:00</small>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Забронювати столик або поставити запитання 💌</h3>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Дякуємо! Ваше повідомлення успішно надіслано.');">
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Ваше ім'я:</label>
+                    <input type="text" required placeholder="..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Телефон або Email:</label>
+                    <input type="text" required placeholder="+380..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Повідомлення:</label>
+                    <textarea rows="4" placeholder="Хочу забронювати столик на завтра о ..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Надіслати повідомлення</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

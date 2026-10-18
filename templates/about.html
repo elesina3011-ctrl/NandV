@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Про нас — N & V {% endblock %}
+
+{% block content %}
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2>Наша історія та філософія ☕✨</h2>
+        <p style="color: #6d4c41; max-width: 700px; margin: 0 auto;">Ми створили N & V як місце, куди хочеться повертатися за затишком, щирими посмішками та найсмачнішою кавою у місті.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; margin-bottom: 40px;">
+        <div class="card" style="background: #3e2723; color: white;">
+            <h3 style="font-size: 2.2rem; color: #f5abe2; margin: 0;">5+</h3>
+            <p style="margin: 5px 0 0 0;">Років досвіду</p>
+        </div>
+        <div class="card" style="background: #3e2723; color: white;">
+            <h3 style="font-size: 2.2rem; color: #f5abe2; margin: 0;">1000+</h3>
+            <p style="margin: 5px 0 0 0;">Чашок кави щодня</p>
+        </div>
+        <div class="card" style="background: #3e2723; color: white;">
+            <h3 style="font-size: 2.2rem; color: #f5abe2; margin: 0;">100%</h3>
+            <p style="margin: 5px 0 0 0;">Свіжа крафтова випічка</p>
+        </div>
+    </div>
+    <div class="card">
+        <h3 style="color: #3e2723; text-align: center; margin-bottom: 20px;">Чому наш продукт особливий?</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div>
+                <h4>🌱 Екологічність та якість</h4>
+                <p style="color: #5d4037; font-size: 0.95rem;">Ми використовуємо лише зерна спешелті-сегменту з ферм, що дотримуються екологічних стандартів, та розкладні стаканчики.</p>
+            </div>
+            <div>
+                <h4>🥐 Французькі традиції</h4>
+                <p style="color: #5d4037; font-size: 0.95rem;">Тісто для наших круасанів дозріває протягом 72 годин за класичною технологією випікання.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

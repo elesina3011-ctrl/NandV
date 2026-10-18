@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Пошук по меню — N & V{% endblock %}
+
+{% block content %}
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2>Пошук по меню кав'ярні 🔍</h2>
+        <p style="color: #6d4c41;">Знайдіть улюблені напої та десерти у нашій базі</p>
+    </div>
+
+    <div class="card" style="max-width: 600px; margin: 0 auto 30px auto;">
+        <form action="/search" method="GET" style="display: flex; gap: 10px;">
+            <input
+                type="text"
+                name="query"
+                value="{{ query }}"
+                placeholder="Введіть назву (наприклад: coffee)..."
+                style="flex: 1; padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;"
+            >
+            <button type="submit" class="btn">Шукати</button>
+        </form>
+    </div>
+
+    {% if error_message %}
+        <div class="alert" style="max-width: 600px; margin: 0 auto 20px auto; text-align: center;">
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+
+    {% if results %}
+        <h3 style="margin-bottom: 20px; color: #3e2723;">Результати пошуку:</h3>
+        <div class="grid-container">
+            {% for item in results %}
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="color: #4e342e; margin-top: 0; font-size: 1.15rem;">{{ item.title }}</h3>
+                        <p style="color: #5d4037; font-size: 0.95rem; margin-bottom: 8px;">
+                            <strong>Категорія:</strong> {{ item.category_name }}
+                        </p>
+                        <p style="color: #6d4c41; font-size: 0.9rem; margin-bottom: 8px;">
+                            <strong>Ціна:</strong> {{ item.price }} ₴
+                        </p>
+                        <p style="color: #6d4c41; font-size: 0.85rem; margin-bottom: 8px;">
+                            {{ item.description }}
+                        </p>
+                    </div>
+                    <form action="{{ url_for('save_searched_item') }}" method="POST" style="margin-top: 12px;">
+                        <input type="hidden" name="title" value="{{ item.title }}">
+                        <input type="hidden" name="category" value="{{ item.category_name }}">
+                        <input type="hidden" name="price" value="{{ item.price }}">
+                        <input type="hidden" name="description" value="{{ item.description }}">
+                        <button type="submit" class="btn" style="width: 100%; padding: 8px; font-size: 0.9rem;">Зберегти</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

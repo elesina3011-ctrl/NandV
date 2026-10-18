@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Історія пошуку — N & V{% endblock %}
+
+{% block content %}
+    <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #3e2723; margin-bottom: 20px; text-align: center;">Історія пошукових запитів 🕒</h2>
+
+        {% if history %}
+            <ul style="list-style-type: none; padding: 0;">
+                {% for record in history %}
+                    <li style="padding: 12px 15px; margin-bottom: 10px; background: #efebe9; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #3e2723; font-weight: 500;">🔍 {{ record.query }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div style="text-align: center; padding: 20px;">
+                <p style="color: #5d4037; font-size: 1.1rem;">Історія пошуку наразі порожня.</p>
+                <p style="color: #8d6e63; font-size: 0.9rem;">Спробуйте скористатися <a href="/search" style="color: #6d4c41; font-weight: bold;">сторінкою пошуку</a>, щоб знайти улюблені позиції.</p>
+            </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="/search" class="btn" style="background: #8d6e63;">Повернутися до пошуку</a>
+        </div>
+    </div>
+{% endblock %}
